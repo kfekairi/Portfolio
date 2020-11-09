@@ -1,5 +1,5 @@
 // import { Link } from "gatsby"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import "../styles/index.scss"
 import ReactFullpage from "@fullpage/react-fullpage"
 import Home from "../components/sections/home"
@@ -11,6 +11,14 @@ import { CssBaseline } from "@material-ui/core"
 
 export default function Index() {
   const [currentTheme, toggleTheme] = useState(theme)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(false)
+    // return () => {
+    //   cleanup
+    // }
+  }, [])
 
   const handleToggleTheme = () =>
     toggleTheme(prevState => (prevState === theme ? darkTheme : theme))
@@ -19,40 +27,41 @@ export default function Index() {
     <>
       <ThemeProvider theme={currentTheme}>
         <CssBaseline />
-
-        <ReactFullpage
-          //fullpage options
-          navigation
-          anchors={["Home", "Portfolio", "Skills", "Contact"]}
-          scrollingSpeed={1000} /* Options here */
-          render={({ state, fullpageApi }) => {
-            return (
-              <ReactFullpage.Wrapper>
-                <div
-                  className="section"
-                  style={{
-                    backgroundColor: currentTheme.palette.background.default,
-                    zIndex: -100,
-                  }}
-                >
-                  <Home
-                    toggleTheme={handleToggleTheme}
-                    isDark={currentTheme.type}
-                  />
-                </div>
-                <div className="section">
-                  <p>Section 2</p>
-                </div>
-                <div className="section">
-                  <p>Section 3</p>
-                </div>
-                <div className="section">
-                  <p>Section 4</p>
-                </div>
-              </ReactFullpage.Wrapper>
-            )
-          }}
-        />
+        {!loading && (
+          <ReactFullpage
+            //fullpage options
+            navigation
+            anchors={["Home", "Portfolio", "Skills", "Contact"]}
+            scrollingSpeed={1000} /* Options here */
+            render={({ state, fullpageApi }) => {
+              return (
+                <ReactFullpage.Wrapper>
+                  <div
+                    className="section"
+                    style={{
+                      backgroundColor: currentTheme.palette.background.default,
+                      zIndex: -100,
+                    }}
+                  >
+                    <Home
+                      toggleTheme={handleToggleTheme}
+                      isDark={currentTheme.type}
+                    />
+                  </div>
+                  <div className="section">
+                    <p>Section 2</p>
+                  </div>
+                  <div className="section">
+                    <p>Section 3</p>
+                  </div>
+                  <div className="section">
+                    <p>Section 4</p>
+                  </div>
+                </ReactFullpage.Wrapper>
+              )
+            }}
+          />
+        )}
       </ThemeProvider>
     </>
   )
