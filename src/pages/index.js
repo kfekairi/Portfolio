@@ -15,9 +15,6 @@ export default function Index() {
 
   useEffect(() => {
     setLoading(false)
-    // return () => {
-    //   cleanup
-    // }
   }, [])
 
   const handleToggleTheme = () =>
