@@ -10,7 +10,7 @@ import { theme, darkTheme } from "../theme"
 import { CssBaseline } from "@material-ui/core"
 
 export default function Index() {
-  const [currentTheme, toggleTheme] = useState(theme)
+  const [currentTheme, toggleTheme] = useState(darkTheme)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

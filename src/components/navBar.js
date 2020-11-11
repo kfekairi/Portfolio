@@ -25,7 +25,7 @@ export default function NavBar({ toggleTheme, isDark }) {
           height: 50,
           backgroundColor: "#00000040",
           borderBottomLeftRadius: 80,
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           display: "flex",
           padding: 8,

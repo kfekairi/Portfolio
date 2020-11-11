@@ -14,6 +14,14 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /src\/.*\.svg/, // See below to configure properly
+        },
+      },
+    },
     "gatsby-plugin-sass",
     "gatsby-plugin-material-ui",
   ],

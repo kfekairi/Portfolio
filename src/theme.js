@@ -5,7 +5,6 @@ const gotham = {
   fontFamily: "Gotham",
   fontStyle: "normal",
   fontDisplay: "swap",
-  fontWeight: 400,
   src: `
       local('Gotham'),
       local('Gomtham-Meduim'),

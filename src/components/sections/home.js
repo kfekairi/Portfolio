@@ -8,10 +8,9 @@ import background2 from "../../assets/image/background2.png"
 import Radium, { StyleRoot } from "radium"
 import { makeStyles } from "@material-ui/styles"
 import { IconButton } from "@material-ui/core"
-import FacebookIcon from "@material-ui/icons/Facebook"
-import TwitterIcon from "@material-ui/icons/Twitter"
 // import { theme } from "../../theme"
-
+import Fb from "../../assets/image/fb.svg"
+import Twitter from "../../assets/image/twitter.svg"
 const styles = {
   fadeInLeft: {
     animation: "x 1s",
@@ -33,33 +32,35 @@ export default function Home({ toggleTheme, isDark }) {
         <div
           style={{
             position: "absolute",
-            top: 50,
-            left: 20,
+            top: 20,
+            left: 12,
             ...styles.fadeInLeftBig,
           }}
         >
           <IconButton>
             {isDark === "light" ? (
-              <TwitterIcon style={{ color: "#4267B2" }} />
+              <Twitter width={45} fill="#4267B2" />
             ) : (
-              <TwitterIcon color="primary" />
+              <Twitter width={45} fill="#fff" />
             )}
           </IconButton>
           <br />
           <IconButton>
             {isDark === "light" ? (
-              <FacebookIcon style={{ color: "#1DA1F2" }} />
+              <Fb width={45} fill="#1981E8" />
             ) : (
-              <FacebookIcon color="primary" />
+              <Fb width={45} fill="#fff" />
             )}
           </IconButton>
         </div>
         <div style={{ paddingLeft: 30, ...styles.fadeInLeft }}>
-          <h1>Hello,</h1>
-          <h3>My name is Khaled.</h3>
-          <h3>
-            I'm a <span className={classes.title}>Software Developer</span>
-          </h3>
+          <p>
+            <span className={classes.title}>Hello,</span> <br />
+            <span className={classes.subTitle}>My name is Khaled </span> <br />
+            <span className={classes.subTitle}>
+              I'm a <span className={classes.job}>Software Developer</span>
+            </span>
+          </p>
         </div>
         <img
           src={background2}
@@ -79,6 +80,13 @@ export default function Home({ toggleTheme, isDark }) {
 
 const useStyles = makeStyles(theme => ({
   title: {
+    fontSize: 48,
+    fontWeight: 900,
+  },
+  subTitle: {
+    fontSize: 24,
+  },
+  job: {
     color: theme.palette.text.secondary,
   },
 }))
