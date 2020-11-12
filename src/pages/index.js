@@ -1,6 +1,5 @@
 // import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-// import "../styles/index.scss"
 import ReactFullpage from "@fullpage/react-fullpage"
 import Home from "../components/sections/home"
 
@@ -8,6 +7,7 @@ import { ThemeProvider } from "@material-ui/core/styles"
 
 import { theme, darkTheme } from "../theme"
 import { CssBaseline } from "@material-ui/core"
+import "../styles/index.scss"
 
 export default function Index() {
   const [currentTheme, toggleTheme] = useState(darkTheme)
@@ -28,6 +28,7 @@ export default function Index() {
           <ReactFullpage
             //fullpage options
             navigation
+            loopBottom={true}
             anchors={["Home", "Portfolio", "Skills", "Contact"]}
             scrollingSpeed={1000} /* Options here */
             render={({ state, fullpageApi }) => {

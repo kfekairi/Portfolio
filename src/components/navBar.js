@@ -2,7 +2,7 @@ import React from "react"
 import { fadeInRight } from "react-animations"
 import Radium, { StyleRoot } from "radium"
 import NavItem from "./navItem"
-import { IconButton } from "@material-ui/core"
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core"
 import NightsStayIcon from "@material-ui/icons/NightsStay"
 import Brightness7Icon from "@material-ui/icons/Brightness7"
 
@@ -13,12 +13,12 @@ const styles = {
   },
 }
 
-export default function NavBar({ toggleTheme, isDark }) {
+export default function NavBar({ toggleTheme, isDark, handleDrawar }) {
   return (
     <StyleRoot>
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           right: 0,
           top: 0,
           width: 385,
