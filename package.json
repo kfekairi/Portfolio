@@ -19,7 +19,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.10.0",
-    "gatsby": "^2.25.1",
+    "gatsby": "^2.32.4",
     "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-react-svg": "^3.0.0",
@@ -31,7 +31,8 @@
     "react": "^16.12.0",
     "react-animations": "^1.0.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-spring": "^8.0.27"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",

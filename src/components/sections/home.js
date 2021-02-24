@@ -1,29 +1,14 @@
-import React, { useState } from "react"
-import BackgroundImg from "../background-img"
-import NavBar from "../navBar"
-import HomeStyle from "./home.module.scss"
-import { fadeInLeft, fadeInLeftBig } from "react-animations"
-import NavItem from "../navItem"
-
-import background2 from "../../assets/image/background2.png"
+import React from "react"
+import { makeStyles, SvgIcon } from "@material-ui/core"
+import { useRef } from "react"
+import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons"
 import Radium, { StyleRoot } from "radium"
-import { makeStyles } from "@material-ui/styles"
-import { Sling as Hamburger } from "hamburger-react"
+import { fadeInLeft, fadeInLeftBig } from "react-animations"
 
-import {
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Modal,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core"
-// import { theme } from "../../theme"
-import Fb from "../../assets/image/fb.svg"
-import Twitter from "../../assets/image/twitter.svg"
+import NavBar from "../navBar"
+import BackgroundImg from "../background-img"
+import { red } from "@material-ui/core/colors"
+
 const styles = {
   fadeInLeft: {
     animation: "x 1s",
@@ -34,133 +19,66 @@ const styles = {
     animationName: Radium.keyframes(fadeInLeftBig, "fadeInLeftBig"),
   },
 }
-export default function Home({ toggleTheme, isDark }) {
+
+function Home() {
+  const ref = useRef()
   const classes = useStyles()
-  const [drawarState, setDrawerState] = useState(false)
-  const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up("md"))
-
-  const handleDrawar = toggled => {
-    toggled ? setDrawerState(true) : setDrawerState(false)
-  }
-
   return (
     <div>
-      {!matches ? (
-        <StyleRoot>
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              right: 0,
-              margin: 12,
-              zIndex: 999,
-              ...styles.fadeInLeft,
-            }}
+      <Parallax ref={ref} pages={2}>
+        <ParallaxLayer speed={-1} factor={3}>
+          <SvgIcon
+            viewBox="0 0 75 75"
+            style={{ width: 75, height: 75, position: "absolute", left: 15 }}
           >
-            <Hamburger
-              rounded
-              toggled={drawarState}
-              toggle={setDrawerState}
-              onToggle={toggled => {
-                handleDrawar(toggled)
-              }}
-            />
-            <Drawer
-              open={drawarState}
-              onClose={() => setDrawerState(false)}
-              onClick={() => setDrawerState(false)}
-              PaperProps={{
-                style: {
-                  width: "50%",
-                  opacity: 0.85,
-                  backgroundColor: "#BE6526",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  padding: 0,
-                },
-              }}
-              ModalProps={{
-                style: {},
-              }}
-            >
-              <ul>
-                <NavItem
-                  title="Home"
-                  linkTo="#Home"
-                  style={{ fontSize: 25, padding: 15 }}
-                />
-                <NavItem
-                  title="Potfolio"
-                  linkTo="#Portfolio"
-                  style={{ fontSize: 25, padding: 15 }}
-                />
-                <NavItem
-                  title="Skills"
-                  linkTo="#Skills"
-                  style={{ fontSize: 25, padding: 15 }}
-                />
-                <NavItem
-                  title="Contact"
-                  linkTo="#Contact"
-                  style={{ fontSize: 25, padding: 15 }}
-                />
-              </ul>
-            </Drawer>
-          </div>
-        </StyleRoot>
-      ) : (
-        <NavBar toggleTheme={toggleTheme} isDark={isDark} />
-      )}
+            <path d="M28.74,44.58a1.28,1.28,0,0,1-1-.51L15.16,27.13l-12.89,17a1.26,1.26,0,1,1-2-1.53l13.9-18.29a1.34,1.34,0,0,1,1-.5,1.24,1.24,0,0,1,1,.51L29.75,42.56a1.27,1.27,0,0,1-1,2Z"></path>
+            <path d="M14.83,20.82h0a1.28,1.28,0,0,1-1-.52L.25,2a1.27,1.27,0,0,1,2-1.51L14.84,17.45,27.73.5a1.26,1.26,0,0,1,2,1.53L15.84,20.32A1.28,1.28,0,0,1,14.83,20.82Z"></path>
+          </SvgIcon>
+          <SvgIcon viewBox="0 0 30 30" style={{ width: 30, height: 30 }}>
+            <path d="M15,30A15,15,0,1,1,30,15,15,15,0,0,1,15,30ZM15,6.23A8.77,8.77,0,1,0,23.77,15,8.77,8.77,0,0,0,15,6.23Z"></path>
+          </SvgIcon>
+          <SvgIcon viewBox="0 0 75 75" style={{ width: 75, height: 75 }}>
+            <path d="M28.74,44.58a1.28,1.28,0,0,1-1-.51L15.16,27.13l-12.89,17a1.26,1.26,0,1,1-2-1.53l13.9-18.29a1.34,1.34,0,0,1,1-.5,1.24,1.24,0,0,1,1,.51L29.75,42.56a1.27,1.27,0,0,1-1,2Z"></path>
+            <path d="M14.83,20.82h0a1.28,1.28,0,0,1-1-.52L.25,2a1.27,1.27,0,0,1,2-1.51L14.84,17.45,27.73.5a1.26,1.26,0,0,1,2,1.53L15.84,20.32A1.28,1.28,0,0,1,14.83,20.82Z"></path>
+          </SvgIcon>
+          <SvgIcon viewBox="0 0 30 30" style={{ width: 30, height: 30 }}>
+            <path d="M15,30A15,15,0,1,1,30,15,15,15,0,0,1,15,30ZM15,6.23A8.77,8.77,0,1,0,23.77,15,8.77,8.77,0,0,0,15,6.23Z"></path>
+          </SvgIcon>
+          <SvgIcon viewBox="0 0 75 75" style={{ width: 75, height: 75 }}>
+            <path d="M28.74,44.58a1.28,1.28,0,0,1-1-.51L15.16,27.13l-12.89,17a1.26,1.26,0,1,1-2-1.53l13.9-18.29a1.34,1.34,0,0,1,1-.5,1.24,1.24,0,0,1,1,.51L29.75,42.56a1.27,1.27,0,0,1-1,2Z"></path>
+            <path d="M14.83,20.82h0a1.28,1.28,0,0,1-1-.52L.25,2a1.27,1.27,0,0,1,2-1.51L14.84,17.45,27.73.5a1.26,1.26,0,0,1,2,1.53L15.84,20.32A1.28,1.28,0,0,1,14.83,20.82Z"></path>
+          </SvgIcon>
+          <SvgIcon viewBox="0 0 30 30" style={{ width: 30, height: 30 }}>
+            <path d="M15,30A15,15,0,1,1,30,15,15,15,0,0,1,15,30ZM15,6.23A8.77,8.77,0,1,0,23.77,15,8.77,8.77,0,0,0,15,6.23Z"></path>
+          </SvgIcon>
+        </ParallaxLayer>
+        <ParallaxLayer speed={0.1}>
+          <BackgroundImg />
+          <NavBar />
+        </ParallaxLayer>
 
-      <BackgroundImg />
-      <StyleRoot>
-        <div
-          style={{
-            position: "absolute",
-            top: 20,
-            left: 12,
-            ...styles.fadeInLeftBig,
-          }}
-        >
-          <IconButton>
-            {isDark === "light" ? (
-              <Twitter width={45} fill="#4267B2" />
-            ) : (
-              <Twitter width={45} fill="#fff" />
-            )}
-          </IconButton>
-          <br />
-          <IconButton>
-            {isDark === "light" ? (
-              <Fb width={45} fill="#1981E8" />
-            ) : (
-              <Fb width={45} fill="#fff" />
-            )}
-          </IconButton>
-        </div>
-        <div style={{ paddingLeft: 30, ...styles.fadeInLeft }}>
-          <p>
-            <span className={classes.title}>Hello,</span> <br />
-            <span className={classes.subTitle}>My name is Khaled </span> <br />
-            <span className={classes.subTitle}>
-              I'm a <span className={classes.job}>Software Developer</span>
-            </span>
-          </p>
-        </div>
-        <img
-          src={background2}
-          alt="none"
-          style={{
-            width: 400,
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            ...styles.fadeInLeftBig,
-          }}
-        />
-      </StyleRoot>
+        <ParallaxLayer offset={0.5} speed={0.5}>
+          <StyleRoot>
+            <div style={{ paddingLeft: 30, ...styles.fadeInLeft }}>
+              <p>
+                <span className={classes.title}>Hello,</span> <br />
+                <span className={classes.subTitle}>
+                  My name is Khaled{" "}
+                </span>{" "}
+                <br />
+                <span className={classes.subTitle}>
+                  I'm a <span className={classes.job}>Software Developer</span>
+                </span>
+              </p>
+            </div>
+          </StyleRoot>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} speed={0.3}>
+          <div
+            style={{ width: "100%", height: "100%", backgroundColor: "red" }}
+          ></div>
+        </ParallaxLayer>
+      </Parallax>
     </div>
   )
 }
@@ -176,7 +94,6 @@ const useStyles = makeStyles(theme => ({
   job: {
     color: theme.palette.text.secondary,
   },
-  "MuiDrawer-modal": {
-    backgroundColor: "red",
-  },
 }))
+
+export default Home

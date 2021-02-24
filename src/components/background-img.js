@@ -19,7 +19,6 @@ export default function BackgroundImg() {
           top: -100,
           width: "100%",
           height: "100%",
-          // paddingLeft: 123,
           zIndex: -1,
           ...styles.fadeInDown,
         }}
