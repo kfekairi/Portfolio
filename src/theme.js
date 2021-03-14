@@ -21,19 +21,19 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: "#232323" },
     text: {
-      primary: "#232323",
+      primary: "white",
       secondary: "#F17f1f",
     },
   },
   typography: {
     fontFamily: "gotham, Arial",
-    // overrides: {
-    //   MuiCssBaseline: {
-    //     "@global": {
-    //       "@font-face": [gotham],
-    //     },
-    //   },
-    // },
+    overrides: {
+      MuiCssBaseline: {
+        "@global": {
+          "@font-face": [gotham],
+        },
+      },
+    },
   },
 })
 const darkTheme = createMuiTheme({

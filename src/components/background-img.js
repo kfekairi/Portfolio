@@ -29,7 +29,7 @@ export default function BackgroundImg() {
               id="Path_1"
               data-name="Path 1"
               d="M1812,928q54.351,0,108-2.876V0H123.274C478.149,557.869,1101.847,928,1812,928Z"
-              fill="#f0a500"
+              fill="#48BB78"
             />
           </g>
         </svg>

@@ -33,15 +33,13 @@ export default function NavBar({ toggleTheme, isDark, handleDrawar }) {
           style={{
             display: "flex",
             listStyleType: "none",
-            // backgroundColor: "red",
-            // alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <NavItem title="Home" linkTo="/" />
-          <NavItem title="Potfolio" linkTo="#Portfolio" />
-          <NavItem title="Skills" linkTo="#Skills" />
-          <NavItem title="Contact" linkTo="#Contact" />
+          <NavItem title="Home" linkTo="#" />
+          <NavItem title="Brief" linkTo="#" />
+          <NavItem title="Work" linkTo="#" />
+          <NavItem title="Contact" linkTo="#" />
         </ul>
       </nav>
     </StyleRoot>
