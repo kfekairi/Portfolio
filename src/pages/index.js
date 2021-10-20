@@ -36,7 +36,7 @@ export default function Index() {
               height: "100vh",
             }}
           >
-            <CircularProgress />
+            <CircularProgress color="secondary" />
           </div>
         ) : (
           <Home />

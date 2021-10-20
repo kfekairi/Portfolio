@@ -13,7 +13,7 @@ const styles = {
   },
 }
 
-export default function NavBar({ toggleTheme, isDark, handleDrawar }) {
+export default function NavBar({ onNavClicked }) {
   return (
     <StyleRoot>
       <nav
@@ -24,6 +24,7 @@ export default function NavBar({ toggleTheme, isDark, handleDrawar }) {
           height: 50,
           backgroundColor: "#00000040",
           borderBottomLeftRadius: 80,
+          display: "flex",
           justifyContent: "center",
           alignItems: "center",
           ...styles.fadeInRight,
@@ -36,10 +37,10 @@ export default function NavBar({ toggleTheme, isDark, handleDrawar }) {
             justifyContent: "center",
           }}
         >
-          <NavItem title="Home" linkTo="#" />
-          <NavItem title="Brief" linkTo="#" />
-          <NavItem title="Work" linkTo="#" />
-          <NavItem title="Contact" linkTo="#" />
+          <NavItem title="Home" onNavClicked={() => onNavClicked(0)} />
+          <NavItem title="Skills" onNavClicked={() => onNavClicked(1)} />
+          <NavItem title="Portfolio" onNavClicked={() => onNavClicked(2.25)} />
+          <NavItem title="Contact" onNavClicked={() => onNavClicked(3)} />
         </ul>
       </nav>
     </StyleRoot>

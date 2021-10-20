@@ -22,6 +22,9 @@ module.exports = {
         },
       },
     },
+
+    "gatsby-plugin-scroll-reveal",
+
     "gatsby-plugin-sass",
     "gatsby-plugin-material-ui",
   ],

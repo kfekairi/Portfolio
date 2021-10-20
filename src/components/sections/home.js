@@ -1,15 +1,24 @@
-import React from "react"
-import { IconButton, makeStyles, SvgIcon } from "@material-ui/core"
+import React, { useState } from "react"
+import {
+  Drawer,
+  Fab,
+  IconButton,
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core"
 import { useRef } from "react"
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons"
 import Radium, { StyleRoot } from "radium"
 import { fadeInLeft, fadeInLeftBig } from "react-animations"
 import Fb from "../../assets/image/fb.svg"
 import Twitter from "../../assets/image/twitter.svg"
-
+import { ArrowUpward } from "@material-ui/icons"
 import NavBar from "../navBar"
 import BackgroundImg from "../background-img"
-import { useHistory } from "react-router"
+import Hamburger from "hamburger-react"
+import NavItem from "../navItem"
+import { Skills } from "./skills/skills"
 
 const styles = {
   fadeInLeft: {
@@ -25,22 +34,116 @@ const styles = {
 function Home() {
   const ref = useRef()
   const classes = useStyles()
+  const [display, setDisplay] = useState(false)
+  const [drawarState, setDrawerState] = useState(false)
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up("md"))
+
+  const handleDrawar = toggled => {
+    toggled ? setDrawerState(true) : setDrawerState(false)
+  }
   return (
-    <div>
-      {/*CONTENTFUL_SPACE_ID = shmn5zzzbzqh CONTENTFUL_ACCESS_TOKEN =
-      XbNUPKaceVVgMHEuDlOaNQvmFbv2w4yFmfp23FmCLAY*/}
-      <Parallax ref={ref} pages={4}>
+    <div
+      onScroll={e => {
+        if (e.target.scrollTop > 350) {
+          setDisplay(true)
+        } else {
+          setDisplay(false)
+        }
+      }}
+    >
+      <Parallax ref={ref} pages={3.5}>
         <ParallaxLayer speed={0.1}>
           <BackgroundImg />
-          <NavBar />
+          {matches && (
+            <NavBar
+              onNavClicked={index => {
+                ref.current.scrollTo(index)
+              }}
+            />
+          )}
+          {!matches && (
+            <StyleRoot>
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  right: 0,
+                  margin: 12,
+                  zIndex: 999,
+                  ...styles.fadeInLeft,
+                }}
+              >
+                <Hamburger
+                  rounded
+                  toggled={drawarState}
+                  toggle={setDrawerState}
+                  onToggle={toggled => {
+                    handleDrawar(toggled)
+                  }}
+                />
+                <Drawer
+                  open={drawarState}
+                  onClose={() => setDrawerState(false)}
+                  onClick={() => setDrawerState(false)}
+                  PaperProps={{
+                    style: {
+                      width: "50%",
+                      opacity: 0.85,
+                      backgroundColor: "#141821",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      display: "flex",
+                      padding: 0,
+                    },
+                  }}
+                  ModalProps={{
+                    style: {},
+                  }}
+                >
+                  <ul>
+                    <NavItem
+                      title="Home"
+                      onNavClicked={_ => {
+                        ref.current.scrollTo(0)
+                      }}
+                      style={{ fontSize: 25, padding: 15 }}
+                    />
+                    <NavItem
+                      title="Skills"
+                      onNavClicked={_ => {
+                        ref.current.scrollTo(1)
+                      }}
+                      style={{ fontSize: 25, padding: 15 }}
+                    />
+                    <NavItem
+                      title="Portfolio"
+                      onNavClicked={_ => {
+                        ref.current.scrollTo(2)
+                      }}
+                      style={{ fontSize: 25, padding: 15 }}
+                    />
+                    <NavItem
+                      title="Contact"
+                      onNavClicked={_ => {
+                        ref.current.scrollTo(3)
+                      }}
+                      style={{ fontSize: 25, padding: 15 }}
+                    />
+                  </ul>
+                </Drawer>
+              </div>
+            </StyleRoot>
+          )}
         </ParallaxLayer>
+
         <ParallaxLayer offset={0.5} speed={0.5}>
           <StyleRoot>
             <div
               style={{
                 position: "absolute",
-                top: -300,
+                top: "-40%",
                 left: 30,
                 ...styles.fadeInLeftBig,
               }}
@@ -59,15 +162,14 @@ function Home() {
                 <span className={classes.subTitle}>My name is Khaled</span>
                 <br />
                 <span className={classes.subTitle}>
-                  I'm an{" "}
-                  <span className={classes.job}>
-                    Embedded Software Developer
-                  </span>
+                  I'm
+                  <span className={classes.job}> Full-Stack Web Developer</span>
                 </span>
               </p>
             </div>
           </StyleRoot>
         </ParallaxLayer>
+
         <ParallaxLayer offset={1.099} speed={-0.1}>
           <div
             style={{
@@ -81,7 +183,7 @@ function Home() {
             }}
           >
             <ParallaxLayer offset={0} speed={0}>
-              <div style={{}}>
+              {/* <div style={{}} id="brief">
                 <p
                   style={{
                     position: "absolute",
@@ -95,11 +197,12 @@ function Home() {
                 >
                   Brief
                 </p>
-              </div>
+              </div> */}
+              <Skills />
             </ParallaxLayer>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.4} speed={1.5}>
+        <ParallaxLayer offset={2.4} speed={1}>
           <div
             style={{
               width: "100%",
@@ -131,6 +234,18 @@ function Home() {
           </div>
         </ParallaxLayer>
       </Parallax>
+      <Fab
+        onClick={() => ref.current.scrollTo(0)}
+        color="primary"
+        style={{
+          position: "absolute",
+          right: 16,
+          transform: `translate(${0}%, 90vh`,
+          display: display ? "block" : "none",
+        }}
+      >
+        <ArrowUpward />
+      </Fab>
     </div>
   )
 }
